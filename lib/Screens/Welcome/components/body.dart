@@ -5,6 +5,7 @@ import 'package:flutter_auth/Screens/Welcome/components/background.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_auth/Screens/Main/main_screen.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -17,14 +18,14 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "WELCOME TO EDU",
+              "WELCOME",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: size.height * 0.05),
-            SvgPicture.asset(
+            /*SvgPicture.asset(
               "assets/icons/chat.svg",
               height: size.height * 0.45,
-            ),
+            ),*/
             SizedBox(height: size.height * 0.05),
             RoundedButton(
               text: "LOGIN",
@@ -49,6 +50,21 @@ class Body extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) {
                       return SignUpScreen();
+                    },
+                  ),
+                );
+              },
+            ),
+            RoundedButton(
+              text: "GUEST LOGIN",
+              color: kPrimaryLightColor,
+              textColor: Colors.black,
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainScreen();
                     },
                   ),
                 );

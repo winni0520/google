@@ -8,8 +8,16 @@ import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_auth/Screens/Authentication/google_login.dart';
+import 'package:flutter_auth/Screens/Main/main_screen.dart';
+import 'package:flutter_auth/Screens/Authentication/components/body.dart';
 
-class Body extends StatelessWidget {
+// {
+//   @override
+//   _BodyState createState() => _BodyState();
+// }
+// class _BodyState extends State<Body>
+ class Body extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,10 +31,10 @@ class Body extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: size.height * 0.03),
-            SvgPicture.asset(
+            /*SvgPicture.asset(
               "assets/icons/signup.svg",
               height: size.height * 0.35,
-            ),
+            ),*/
             RoundedInputField(
               hintText: "Your Email",
               onChanged: (value) {},
@@ -36,7 +44,16 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "SIGNUP",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainScreen();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
@@ -66,7 +83,18 @@ class Body extends StatelessWidget {
                 ),
                 SocalIcon(
                   iconSrc: "assets/icons/google-plus.svg",
-                  press: () {},
+                  press: () {
+                    signInWithGoogle().then((result){
+                      if(result != null){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context){
+                            return MainScreen();
+                          },
+                          ),
+                        );
+                      }
+                    });
+                  },
                 ),
               ],
             )
